@@ -1418,6 +1418,7 @@ func (s *session) NewTxn(ctx context.Context) error {
 	}
 
 	txn, err := s.store.Begin()
+	logutil.Logger(ctx).Info("hello transaction")
 	if err != nil {
 		return err
 	}

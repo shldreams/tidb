@@ -496,6 +496,7 @@ type txnFuture struct {
 func (tf *txnFuture) wait() (kv.Transaction, error) {
 	startTS, err := tf.future.Wait()
 	if err == nil {
+		logutil.BgLogger().Info("hello transaction")
 		return tf.store.BeginWithStartTS(startTS)
 	} else if config.GetGlobalConfig().Store == "mocktikv" {
 		return nil, err
